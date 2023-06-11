@@ -17,7 +17,6 @@ class TweetScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // print(context.read<AuthBloc>().state.userData?.uid);
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state.authStatus == const AuthStatus.signedOut()) {

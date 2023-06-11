@@ -45,6 +45,8 @@ class AddTweetSheet extends StatelessWidget {
                   label: "Post",
                   onPressed: () {
                     if (tweetCntl.text.isNotEmpty) {
+                      final userData = context.read<AuthBloc>().state.userData;
+
                       if (prevData != null) {
                         //Edit
 
@@ -53,12 +55,12 @@ class AddTweetSheet extends StatelessWidget {
                                 id: prevData!.id,
                                 postedDate: DateTime.now().toString().split(".").first,
                                 tweet: tweetCntl.text,
-                                userId: prevData!.id,
+                                userId: prevData!.userId,
+                                userName: userData?.displayName ?? "Anonymous",
                               ),
                             ));
                       } else {
                         // Add New
-                        final userData = context.read<AuthBloc>().state.userData;
                         context.read<TweetBloc>().add(AddTweet(
                               data: TweetData(
                                 postedDate: DateTime.now().toString().split(".").first,

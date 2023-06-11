@@ -87,7 +87,7 @@ class TweetBloc extends Bloc<TweetEvent, TweetState> {
           _iTweetRepo.getTweetsStream(),
           onData: (data) {
             data.sort((a, b) => b.postedDate.compareTo(a.postedDate));
-            return state.copyWith(tweets: data);
+            return state.copyWith(status: const TweetStatus.fetched(), tweets: data);
           },
         );
       } catch (_) {}
