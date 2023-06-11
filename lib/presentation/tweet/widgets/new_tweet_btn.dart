@@ -1,9 +1,9 @@
 import 'package:crud_app/application/core/app_colors.dart';
-import 'package:crud_app/presentation/tweet/widgets/add_tweet_widget.dart';
+import 'package:crud_app/presentation/tweet/widgets/add_tweet_sheet.dart';
 import 'package:flutter/material.dart';
 
-class NewTweetWidget extends StatelessWidget {
-  const NewTweetWidget({super.key});
+class NewTweetBtn extends StatelessWidget {
+  const NewTweetBtn({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class NewTweetWidget extends StatelessWidget {
           context: context,
           isScrollControlled: true,
           builder: (context) {
-            return AddTweetWidget();
+            return AddTweetSheet();
           },
         );
       },

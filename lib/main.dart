@@ -1,6 +1,6 @@
 import 'package:crud_app/application/auth/auth_bloc.dart';
+import 'package:crud_app/application/tweet/tweet_bloc.dart';
 import 'package:crud_app/domain/core/di/injectable.dart';
-import 'package:crud_app/infrastructure/auth/auth_repository.dart';
 import 'package:crud_app/presentation/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (ctx) => getIt<AuthBloc>()),
+        BlocProvider(create: (ctx) => getIt<TweetBloc>()),
       ],
       child: MaterialApp(
         title: 'CRUD APP',

@@ -86,6 +86,7 @@ class TweetBloc extends Bloc<TweetEvent, TweetState> {
         await emit.forEach(
           _iTweetRepo.getTweetsStream(),
           onData: (data) {
+            data.sort((a, b) => b.postedDate.compareTo(a.postedDate));
             return state.copyWith(tweets: data);
           },
         );

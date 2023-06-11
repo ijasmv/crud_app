@@ -5,6 +5,7 @@ part 'tweet_data.g.dart';
 class TweetData {
   String id;
   String userId;
+  String userName;
   String tweet;
   String postedDate;
 
@@ -13,6 +14,7 @@ class TweetData {
     this.postedDate = "",
     this.userId = "",
     this.tweet = "",
+    this.userName = "",
   });
 
   factory TweetData.fromJson(Map<String, dynamic> json) => _$TweetDataFromJson(json);

@@ -9,6 +9,8 @@ import 'package:crud_app/presentation/widgets/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../application/tweet/tweet_bloc.dart';
+
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
   final TextEditingController emailCntl = TextEditingController();
@@ -20,6 +22,7 @@ class LoginScreen extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state.authStatus == const AuthStatus.loggedIn()) {
+          context.read<TweetBloc>().add(const GetTweetsStream());
           Navigator.popUntil(context, (route) => route.isFirst);
           Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (ctx) => const TweetScreen()));

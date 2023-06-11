@@ -7,11 +7,14 @@ class AuthRepository implements IAuthRepo {
   final _fAuthInstance = FirebaseAuth.instance;
 
   @override
-  Future<UserCredential?> register({required String email, required String password}) async {
+  Future<User?> register(
+      {required String email, required String password, required String name}) async {
     try {
       final userCredential = await _fAuthInstance.createUserWithEmailAndPassword(
           email: email, password: password);
-      return userCredential;
+      await userCredential.user?.updateDisplayName(name);
+
+      return _fAuthInstance.currentUser;
     } on FirebaseAuthException catch (e) {
       throw e.message ?? "";
     }
@@ -37,11 +40,11 @@ class AuthRepository implements IAuthRepo {
   }
 
   @override
-  Future<UserCredential?> login({required String email, required String password}) async {
+  Future<User?> login({required String email, required String password}) async {
     try {
       final userCredential =
           await _fAuthInstance.signInWithEmailAndPassword(email: email, password: password);
-      return userCredential;
+      return userCredential.user;
     } on FirebaseAuthException catch (e) {
       throw e.message ?? "";
     }

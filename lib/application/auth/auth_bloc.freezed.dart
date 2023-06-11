@@ -18,7 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password) register,
+    required TResult Function(String email, String password, String name)
+        register,
     required TResult Function(String email, String password) login,
     required TResult Function() signOut,
     required TResult Function() checkAuth,
@@ -26,7 +27,7 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String password)? register,
+    TResult? Function(String email, String password, String name)? register,
     TResult? Function(String email, String password)? login,
     TResult? Function()? signOut,
     TResult? Function()? checkAuth,
@@ -34,7 +35,7 @@ mixin _$AuthEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? register,
+    TResult Function(String email, String password, String name)? register,
     TResult Function(String email, String password)? login,
     TResult Function()? signOut,
     TResult Function()? checkAuth,
@@ -91,7 +92,7 @@ abstract class _$$RegisterCopyWith<$Res> {
           _$Register value, $Res Function(_$Register) then) =
       __$$RegisterCopyWithImpl<$Res>;
   @useResult
-  $Res call({String email, String password});
+  $Res call({String email, String password, String name});
 }
 
 /// @nodoc
@@ -106,6 +107,7 @@ class __$$RegisterCopyWithImpl<$Res>
   $Res call({
     Object? email = null,
     Object? password = null,
+    Object? name = null,
   }) {
     return _then(_$Register(
       email: null == email
@@ -116,6 +118,10 @@ class __$$RegisterCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -123,16 +129,19 @@ class __$$RegisterCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Register with DiagnosticableTreeMixin implements Register {
-  const _$Register({required this.email, required this.password});
+  const _$Register(
+      {required this.email, required this.password, required this.name});
 
   @override
   final String email;
   @override
   final String password;
+  @override
+  final String name;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AuthEvent.register(email: $email, password: $password)';
+    return 'AuthEvent.register(email: $email, password: $password, name: $name)';
   }
 
   @override
@@ -141,7 +150,8 @@ class _$Register with DiagnosticableTreeMixin implements Register {
     properties
       ..add(DiagnosticsProperty('type', 'AuthEvent.register'))
       ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('password', password));
+      ..add(DiagnosticsProperty('password', password))
+      ..add(DiagnosticsProperty('name', name));
   }
 
   @override
@@ -151,11 +161,12 @@ class _$Register with DiagnosticableTreeMixin implements Register {
             other is _$Register &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
-                other.password == password));
+                other.password == password) &&
+            (identical(other.name, name) || other.name == name));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password);
+  int get hashCode => Object.hash(runtimeType, email, password, name);
 
   @JsonKey(ignore: true)
   @override
@@ -166,36 +177,37 @@ class _$Register with DiagnosticableTreeMixin implements Register {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password) register,
+    required TResult Function(String email, String password, String name)
+        register,
     required TResult Function(String email, String password) login,
     required TResult Function() signOut,
     required TResult Function() checkAuth,
   }) {
-    return register(email, password);
+    return register(email, password, name);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String password)? register,
+    TResult? Function(String email, String password, String name)? register,
     TResult? Function(String email, String password)? login,
     TResult? Function()? signOut,
     TResult? Function()? checkAuth,
   }) {
-    return register?.call(email, password);
+    return register?.call(email, password, name);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? register,
+    TResult Function(String email, String password, String name)? register,
     TResult Function(String email, String password)? login,
     TResult Function()? signOut,
     TResult Function()? checkAuth,
     required TResult orElse(),
   }) {
     if (register != null) {
-      return register(email, password);
+      return register(email, password, name);
     }
     return orElse();
   }
@@ -241,10 +253,12 @@ class _$Register with DiagnosticableTreeMixin implements Register {
 abstract class Register implements AuthEvent {
   const factory Register(
       {required final String email,
-      required final String password}) = _$Register;
+      required final String password,
+      required final String name}) = _$Register;
 
   String get email;
   String get password;
+  String get name;
   @JsonKey(ignore: true)
   _$$RegisterCopyWith<_$Register> get copyWith =>
       throw _privateConstructorUsedError;
@@ -329,7 +343,8 @@ class _$Login with DiagnosticableTreeMixin implements Login {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password) register,
+    required TResult Function(String email, String password, String name)
+        register,
     required TResult Function(String email, String password) login,
     required TResult Function() signOut,
     required TResult Function() checkAuth,
@@ -340,7 +355,7 @@ class _$Login with DiagnosticableTreeMixin implements Login {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String password)? register,
+    TResult? Function(String email, String password, String name)? register,
     TResult? Function(String email, String password)? login,
     TResult? Function()? signOut,
     TResult? Function()? checkAuth,
@@ -351,7 +366,7 @@ class _$Login with DiagnosticableTreeMixin implements Login {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? register,
+    TResult Function(String email, String password, String name)? register,
     TResult Function(String email, String password)? login,
     TResult Function()? signOut,
     TResult Function()? checkAuth,
@@ -453,7 +468,8 @@ class _$SignOut with DiagnosticableTreeMixin implements SignOut {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password) register,
+    required TResult Function(String email, String password, String name)
+        register,
     required TResult Function(String email, String password) login,
     required TResult Function() signOut,
     required TResult Function() checkAuth,
@@ -464,7 +480,7 @@ class _$SignOut with DiagnosticableTreeMixin implements SignOut {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String password)? register,
+    TResult? Function(String email, String password, String name)? register,
     TResult? Function(String email, String password)? login,
     TResult? Function()? signOut,
     TResult? Function()? checkAuth,
@@ -475,7 +491,7 @@ class _$SignOut with DiagnosticableTreeMixin implements SignOut {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? register,
+    TResult Function(String email, String password, String name)? register,
     TResult Function(String email, String password)? login,
     TResult Function()? signOut,
     TResult Function()? checkAuth,
@@ -573,7 +589,8 @@ class _$CheckAuth with DiagnosticableTreeMixin implements CheckAuth {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String email, String password) register,
+    required TResult Function(String email, String password, String name)
+        register,
     required TResult Function(String email, String password) login,
     required TResult Function() signOut,
     required TResult Function() checkAuth,
@@ -584,7 +601,7 @@ class _$CheckAuth with DiagnosticableTreeMixin implements CheckAuth {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String email, String password)? register,
+    TResult? Function(String email, String password, String name)? register,
     TResult? Function(String email, String password)? login,
     TResult? Function()? signOut,
     TResult? Function()? checkAuth,
@@ -595,7 +612,7 @@ class _$CheckAuth with DiagnosticableTreeMixin implements CheckAuth {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String email, String password)? register,
+    TResult Function(String email, String password, String name)? register,
     TResult Function(String email, String password)? login,
     TResult Function()? signOut,
     TResult Function()? checkAuth,

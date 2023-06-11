@@ -11,11 +11,13 @@ TweetData _$TweetDataFromJson(Map<String, dynamic> json) => TweetData(
       postedDate: json['postedDate'] as String? ?? "",
       userId: json['userId'] as String? ?? "",
       tweet: json['tweet'] as String? ?? "",
+      userName: json['userName'] as String? ?? "",
     );
 
 Map<String, dynamic> _$TweetDataToJson(TweetData instance) => <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,
+      'userName': instance.userName,
       'tweet': instance.tweet,
       'postedDate': instance.postedDate,
     };

@@ -18,15 +18,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<Register>((event, emit) async {
       emit(state.copyWith(isLoading: true, authStatus: const AuthStatus()));
       try {
-        final userCred =
-            await iAuthRepo.register(email: event.email, password: event.password);
-        print(userCred);
-        print(userCred?.user);
+        final userCred = await iAuthRepo.register(
+            email: event.email, password: event.password, name: event.name);
+
         if (userCred != null) {
           emit(state.copyWith(
             isLoading: false,
             authStatus: const AuthStatus.registered(),
-            userData: userCred.user,
+            userData: userCred,
           ));
         } else {
           emit(state.copyWith(
@@ -53,7 +52,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           emit(state.copyWith(
             isLoading: false,
             authStatus: const AuthStatus.loggedIn(),
-            userData: userCred.user,
+            userData: userCred,
           ));
         } else {
           emit(state.copyWith(
